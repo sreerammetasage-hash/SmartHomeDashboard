@@ -1,63 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Smart Home Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Home Automation Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
-    <header>
-        <h1>AI-Driven Smart Home Automation</h1>
-        <h2>Auto / Manual Control Dashboard</h2>
-    </header>
+<div class="container">
 
-    <!-- Main Mode Toggle -->
+    <h1 class="title">AI-Driven Smart Home Dashboard</h1>
+
+    <!-- MODE TOGGLE -->
     <div class="mode-section">
-        <h3>System Mode</h3>
-        <button id="modeToggle">AUTO</button>
+        <span class="mode-label">Mode:</span>
+
+        <label class="switch">
+            <input type="checkbox" id="modeToggle">
+            <span class="slider round"></span>
+        </label>
+
+        <span id="modeStatus" class="mode-status">AUTO</span>
     </div>
 
-    <!-- Appliance Blocks -->
+    <!-- APPLIANCES GRID -->
     <div class="grid">
-
-        <div class="block" id="fanBlock">
-            <h3>Fan</h3>
-            <p>Status: <span id="fanStatus">OFF</span></p>
-            <button class="toggle-btn" id="fanBtn">Toggle</button>
+        
+        <!-- FAN -->
+        <div class="card">
+            <h2>Fan</h2>
+            <div class="status-bar"></div>
+            <p id="fanState" class="state">OFF</p>
+            <button class="btn" id="fanBtn">Toggle Fan</button>
         </div>
 
-        <div class="block" id="lightBlock">
-            <h3>Main Light</h3>
-            <p>Status: <span id="lightStatus">OFF</span></p>
-            <button class="toggle-btn" id="lightBtn">Toggle</button>
+        <!-- LIGHT -->
+        <div class="card">
+            <h2>Main Light</h2>
+            <div class="status-bar"></div>
+            <p id="lightState" class="state">OFF</p>
+            <button class="btn" id="lightBtn">Toggle Light</button>
         </div>
 
-        <div class="block" id="pirLightBlock">
-            <h3>PIR Light</h3>
-            <p>Status: <span id="pirLightStatus">OFF</span></p>
-            <button class="toggle-btn" id="pirLightBtn">Toggle</button>
-        </div>
-
-    </div>
-
-    <!-- Sensor Status Section -->
-    <div class="sensor-section">
-        <h2>Sensor Readings</h2>
-
-        <p>Temperature: <span id="tempValue">--</span></p>
-        <p>Humidity: <span id="humValue">--</span></p>
-        <p>Light Level: <span id="ldrValue">--</span></p>
-        <p>Motion: <span id="pirValue">--</span></p>
-        <p>Gas: <span id="gasValue">--</span></p>
-
-        <div class="ai-box">
-            <h3>AI Logic Status</h3>
-            <p id="aiStatus">Waiting for data...</p>
+        <!-- PIR LIGHT -->
+        <div class="card">
+            <h2>Motion Light</h2>
+            <div class="status-bar"></div>
+            <p id="pirLightState" class="state">OFF</p>
+            <button class="btn" id="pirLightBtn">Toggle PIR Light</button>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- SENSOR + AI STATUS -->
+    <div class="grid2">
+        <div class="sensor-card">
+            <h3>Temperature</h3>
+            <p id="tempVal" class="reading">-- °C</p>
+        </div>
+
+        <div class="sensor-card">
+            <h3>Light Level</h3>
+            <p id="lightVal" class="reading">--</p>
+        </div>
+
+        <div class="sensor-card">
+            <h3>Motion</h3>
+            <p id="motionVal" class="reading">--</p>
+        </div>
+
+        <div class="sensor-card gas">
+            <h3>Gas Sensor (MQ-2)</h3>
+            <p id="gasVal" class="reading">--</p>
+        </div>
+
+        <div class="ai-card">
+            <h3>AI Decision Status</h3>
+            <p id="aiStatus">Awaiting data…</p>
+        </div>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
