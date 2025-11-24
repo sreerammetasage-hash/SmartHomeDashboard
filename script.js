@@ -1,38 +1,76 @@
-// AUTO/MANUAL TOGGLE
-const modeToggle = document.getElementById("modeToggle");
-const modeStatus = document.getElementById("modeStatus");
+// ------------------------------
+// FIREBASE CDN IMPORT
+// ------------------------------
+import { initializeApp } 
+from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 
-modeToggle.addEventListener("change", () => {
-    if (modeToggle.checked) {
-        modeStatus.innerText = "MANUAL";
-        modeStatus.style.color = "#ffdd00";
-    } else {
-        modeStatus.innerText = "AUTO";
-        modeStatus.style.color = "#00eaff";
-    }
+import { 
+    getDatabase, 
+    ref, 
+    set, 
+    onValue 
+} 
+from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
+
+// ------------------------------
+// YOUR FIREBASE CONFIG
+// ------------------------------
+const firebaseConfig = {
+  apiKey: "AIzaSyAFBFu6HQ6er6cFvF6kRTJdd0YgU75xtP0",
+  authDomain: "smart-home-dashboard-3f5b2.firebaseapp.com",
+  databaseURL: "https://smart-home-dashboard-3f5b2-default-rtdb.firebaseio.com",
+  projectId: "smart-home-dashboard-3f5b2",
+  storageBucket: "smart-home-dashboard-3f5b2.firebasestorage.app",
+  messagingSenderId: "967923717630",
+  appId: "1:967923717630:web:1c52a975d5c446e53f9caf"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+
+// ------------------------------
+// LIVE DATABASE READING
+// ------------------------------
+onValue(ref(db, '/'), (snap) => {
+    const data = snap.val();
+
+    // Mode
+    document.getElementById("modeStatus").innerText = data.mode;
+
+    // Appliances
+    document.getElementById("fanStatus").innerText = data.fan;
+    document.getElementById("lightStatus").innerText = data.light;
+    document.getElementById("pirLightStatus").innerText = data.pirLight;
+
+    // Sensors
+    document.getElementById("tempVal").innerText = data.sensors.temperature;
+    document.getElementById("lightVal").innerText = data.sensors.light;
+    document.getElementById("motionVal").innerText = data.sensors.motion;
+    document.getElementById("gasVal").innerText = data.sensors.gas;
+
+    // AI Status
+    document.getElementById("aiStatus").innerText = data.ai;
 });
 
-// Appliance buttons (UI only for now)
-const fanState = document.getElementById("fanState");
-const lightState = document.getElementById("lightState");
-const pirLightState = document.getElementById("pirLightState");
 
-document.getElementById("fanBtn").onclick = () => {
-    fanState.innerText = fanState.innerText === "ON" ? "OFF" : "ON";
+// ------------------------------
+// WRITE DATA (BUTTONS)
+// ------------------------------
+window.setFan = function(state) {
+    set(ref(db, 'fan'), state);
 };
 
-document.getElementById("lightBtn").onclick = () => {
-    lightState.innerText = lightState.innerText === "ON" ? "OFF" : "ON";
+window.setLight = function(state) {
+    set(ref(db, 'light'), state);
 };
 
-document.getElementById("pirLightBtn").onclick = () => {
-    pirLightState.innerText = pirLightState.innerText === "ON" ? "OFF" : "ON";
+window.setPirLight = function(state) {
+    set(ref(db, 'pirLight'), state);
 };
 
-// Placeholder sensor values
-document.getElementById("tempVal").innerText = "32 °C";
-document.getElementById("lightVal").innerText = "Bright";
-document.getElementById("motionVal").innerText = "No Motion";
-document.getElementById("gasVal").innerText = "Safe";
-
-document.getElementById("aiStatus").innerText = "Monitoring Environment…";
+window.setMode = function(state) {
+    set(ref(db, 'mode'), state);
+};
