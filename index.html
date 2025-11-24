@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Smart Home Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>AI-Driven Smart Home Automation</h1>
+        <h2>Auto / Manual Control Dashboard</h2>
+    </header>
+
+    <!-- Main Mode Toggle -->
+    <div class="mode-section">
+        <h3>System Mode</h3>
+        <button id="modeToggle">AUTO</button>
+    </div>
+
+    <!-- Appliance Blocks -->
+    <div class="grid">
+
+        <div class="block" id="fanBlock">
+            <h3>Fan</h3>
+            <p>Status: <span id="fanStatus">OFF</span></p>
+            <button class="toggle-btn" id="fanBtn">Toggle</button>
+        </div>
+
+        <div class="block" id="lightBlock">
+            <h3>Main Light</h3>
+            <p>Status: <span id="lightStatus">OFF</span></p>
+            <button class="toggle-btn" id="lightBtn">Toggle</button>
+        </div>
+
+        <div class="block" id="pirLightBlock">
+            <h3>PIR Light</h3>
+            <p>Status: <span id="pirLightStatus">OFF</span></p>
+            <button class="toggle-btn" id="pirLightBtn">Toggle</button>
+        </div>
+
+    </div>
+
+    <!-- Sensor Status Section -->
+    <div class="sensor-section">
+        <h2>Sensor Readings</h2>
+
+        <p>Temperature: <span id="tempValue">--</span></p>
+        <p>Humidity: <span id="humValue">--</span></p>
+        <p>Light Level: <span id="ldrValue">--</span></p>
+        <p>Motion: <span id="pirValue">--</span></p>
+        <p>Gas: <span id="gasValue">--</span></p>
+
+        <div class="ai-box">
+            <h3>AI Logic Status</h3>
+            <p id="aiStatus">Waiting for data...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

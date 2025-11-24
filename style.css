@@ -1,0 +1,59 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #111;
+    color: white;
+    font-family: Arial;
+    text-align: center;
+}
+
+header {
+    background: #222;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.block {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #000;
+}
+
+.toggle-btn {
+    padding: 10px 20px;
+    background: #00aaff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.toggle-btn:hover {
+    background: #0088cc;
+}
+
+.mode-section {
+    padding: 20px;
+}
+
+.sensor-section {
+    background: #1a1a1a;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.ai-box {
+    background: #222;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
